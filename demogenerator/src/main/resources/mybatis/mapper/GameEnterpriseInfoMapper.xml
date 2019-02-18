@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.demo.demogenerator.dao.GameEnterpriseInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.demo.demogenerator.model.GameEnterpriseInfo" >
+    <constructor >
+      <idArg column="id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="game_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="enterprise_ceo" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="enterprise_current_period" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="enterprise_member_number" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="enterprise_status" jdbcType="TINYINT" javaType="java.lang.Byte" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, game_id, enterprise_ceo, enterprise_current_period, enterprise_member_number, 
+    enterprise_status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from game_enterprise_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from game_enterprise_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.demo.demogenerator.model.GameEnterpriseInfo" >
+    insert into game_enterprise_info (id, game_id, enterprise_ceo, 
+      enterprise_current_period, enterprise_member_number, 
+      enterprise_status)
+    values (#{id,jdbcType=BIGINT}, #{gameId,jdbcType=BIGINT}, #{enterpriseCeo,jdbcType=BIGINT}, 
+      #{enterpriseCurrentPeriod,jdbcType=INTEGER}, #{enterpriseMemberNumber,jdbcType=INTEGER}, 
+      #{enterpriseStatus,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.demo.demogenerator.model.GameEnterpriseInfo" >
+    insert into game_enterprise_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="gameId != null" >
+        game_id,
+      </if>
+      <if test="enterpriseCeo != null" >
+        enterprise_ceo,
+      </if>
+      <if test="enterpriseCurrentPeriod != null" >
+        enterprise_current_period,
+      </if>
+      <if test="enterpriseMemberNumber != null" >
+        enterprise_member_number,
+      </if>
+      <if test="enterpriseStatus != null" >
+        enterprise_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="gameId != null" >
+        #{gameId,jdbcType=BIGINT},
+      </if>
+      <if test="enterpriseCeo != null" >
+        #{enterpriseCeo,jdbcType=BIGINT},
+      </if>
+      <if test="enterpriseCurrentPeriod != null" >
+        #{enterpriseCurrentPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="enterpriseMemberNumber != null" >
+        #{enterpriseMemberNumber,jdbcType=INTEGER},
+      </if>
+      <if test="enterpriseStatus != null" >
+        #{enterpriseStatus,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.demo.demogenerator.model.GameEnterpriseInfo" >
+    update game_enterprise_info
+    <set >
+      <if test="gameId != null" >
+        game_id = #{gameId,jdbcType=BIGINT},
+      </if>
+      <if test="enterpriseCeo != null" >
+        enterprise_ceo = #{enterpriseCeo,jdbcType=BIGINT},
+      </if>
+      <if test="enterpriseCurrentPeriod != null" >
+        enterprise_current_period = #{enterpriseCurrentPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="enterpriseMemberNumber != null" >
+        enterprise_member_number = #{enterpriseMemberNumber,jdbcType=INTEGER},
+      </if>
+      <if test="enterpriseStatus != null" >
+        enterprise_status = #{enterpriseStatus,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.demo.demogenerator.model.GameEnterpriseInfo" >
+    update game_enterprise_info
+    set game_id = #{gameId,jdbcType=BIGINT},
+      enterprise_ceo = #{enterpriseCeo,jdbcType=BIGINT},
+      enterprise_current_period = #{enterpriseCurrentPeriod,jdbcType=INTEGER},
+      enterprise_member_number = #{enterpriseMemberNumber,jdbcType=INTEGER},
+      enterprise_status = #{enterpriseStatus,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

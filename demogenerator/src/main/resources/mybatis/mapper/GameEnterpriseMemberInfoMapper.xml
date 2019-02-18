@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.demo.demogenerator.dao.GameEnterpriseMemberInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.demo.demogenerator.model.GameEnterpriseMemberInfo" >
+    <constructor >
+      <idArg column="id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="game_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="game_enterprise_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="user_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="game_enterprise_role" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="game_contribution_rate" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.demo.demogenerator.model.GameEnterpriseMemberInfo" >
+    <constructor >
+      <idArg column="id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="game_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="game_enterprise_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="user_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="game_enterprise_role" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="game_contribution_rate" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="game_experience" jdbcType="LONGVARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, game_id, game_enterprise_id, user_id, game_enterprise_role, game_contribution_rate
+  </sql>
+  <sql id="Blob_Column_List" >
+    game_experience
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from game_enterprise_member_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from game_enterprise_member_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.demo.demogenerator.model.GameEnterpriseMemberInfo" >
+    insert into game_enterprise_member_info (id, game_id, game_enterprise_id, 
+      user_id, game_enterprise_role, game_contribution_rate, 
+      game_experience)
+    values (#{id,jdbcType=BIGINT}, #{gameId,jdbcType=BIGINT}, #{gameEnterpriseId,jdbcType=BIGINT}, 
+      #{userId,jdbcType=BIGINT}, #{gameEnterpriseRole,jdbcType=VARCHAR}, #{gameContributionRate,jdbcType=INTEGER}, 
+      #{gameExperience,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.demo.demogenerator.model.GameEnterpriseMemberInfo" >
+    insert into game_enterprise_member_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="gameId != null" >
+        game_id,
+      </if>
+      <if test="gameEnterpriseId != null" >
+        game_enterprise_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="gameEnterpriseRole != null" >
+        game_enterprise_role,
+      </if>
+      <if test="gameContributionRate != null" >
+        game_contribution_rate,
+      </if>
+      <if test="gameExperience != null" >
+        game_experience,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="gameId != null" >
+        #{gameId,jdbcType=BIGINT},
+      </if>
+      <if test="gameEnterpriseId != null" >
+        #{gameEnterpriseId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="gameEnterpriseRole != null" >
+        #{gameEnterpriseRole,jdbcType=VARCHAR},
+      </if>
+      <if test="gameContributionRate != null" >
+        #{gameContributionRate,jdbcType=INTEGER},
+      </if>
+      <if test="gameExperience != null" >
+        #{gameExperience,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.demo.demogenerator.model.GameEnterpriseMemberInfo" >
+    update game_enterprise_member_info
+    <set >
+      <if test="gameId != null" >
+        game_id = #{gameId,jdbcType=BIGINT},
+      </if>
+      <if test="gameEnterpriseId != null" >
+        game_enterprise_id = #{gameEnterpriseId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="gameEnterpriseRole != null" >
+        game_enterprise_role = #{gameEnterpriseRole,jdbcType=VARCHAR},
+      </if>
+      <if test="gameContributionRate != null" >
+        game_contribution_rate = #{gameContributionRate,jdbcType=INTEGER},
+      </if>
+      <if test="gameExperience != null" >
+        game_experience = #{gameExperience,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.demo.demogenerator.model.GameEnterpriseMemberInfo" >
+    update game_enterprise_member_info
+    set game_id = #{gameId,jdbcType=BIGINT},
+      game_enterprise_id = #{gameEnterpriseId,jdbcType=BIGINT},
+      user_id = #{userId,jdbcType=BIGINT},
+      game_enterprise_role = #{gameEnterpriseRole,jdbcType=VARCHAR},
+      game_contribution_rate = #{gameContributionRate,jdbcType=INTEGER},
+      game_experience = #{gameExperience,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.demo.demogenerator.model.GameEnterpriseMemberInfo" >
+    update game_enterprise_member_info
+    set game_id = #{gameId,jdbcType=BIGINT},
+      game_enterprise_id = #{gameEnterpriseId,jdbcType=BIGINT},
+      user_id = #{userId,jdbcType=BIGINT},
+      game_enterprise_role = #{gameEnterpriseRole,jdbcType=VARCHAR},
+      game_contribution_rate = #{gameContributionRate,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

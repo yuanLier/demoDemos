@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.demo.demogenerator.dao.GameInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.demo.demogenerator.model.GameInfo" >
+    <constructor >
+      <idArg column="id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="game_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="game_creator_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="game_max_enterprise" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="game_enterprise_number" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="game_enterprise_alive_number" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="game_years" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="game_periods_of_year" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="game_current_period" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="game_status" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="game_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, game_name, game_creator_id, game_max_enterprise, game_enterprise_number, game_enterprise_alive_number, 
+    game_years, game_periods_of_year, game_current_period, game_status, game_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from game_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from game_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.demo.demogenerator.model.GameInfo" >
+    insert into game_info (id, game_name, game_creator_id, 
+      game_max_enterprise, game_enterprise_number, 
+      game_enterprise_alive_number, game_years, game_periods_of_year, 
+      game_current_period, game_status, game_time
+      )
+    values (#{id,jdbcType=BIGINT}, #{gameName,jdbcType=VARCHAR}, #{gameCreatorId,jdbcType=BIGINT}, 
+      #{gameMaxEnterprise,jdbcType=INTEGER}, #{gameEnterpriseNumber,jdbcType=INTEGER}, 
+      #{gameEnterpriseAliveNumber,jdbcType=INTEGER}, #{gameYears,jdbcType=INTEGER}, #{gamePeriodsOfYear,jdbcType=INTEGER}, 
+      #{gameCurrentPeriod,jdbcType=INTEGER}, #{gameStatus,jdbcType=INTEGER}, #{gameTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.demo.demogenerator.model.GameInfo" >
+    insert into game_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="gameName != null" >
+        game_name,
+      </if>
+      <if test="gameCreatorId != null" >
+        game_creator_id,
+      </if>
+      <if test="gameMaxEnterprise != null" >
+        game_max_enterprise,
+      </if>
+      <if test="gameEnterpriseNumber != null" >
+        game_enterprise_number,
+      </if>
+      <if test="gameEnterpriseAliveNumber != null" >
+        game_enterprise_alive_number,
+      </if>
+      <if test="gameYears != null" >
+        game_years,
+      </if>
+      <if test="gamePeriodsOfYear != null" >
+        game_periods_of_year,
+      </if>
+      <if test="gameCurrentPeriod != null" >
+        game_current_period,
+      </if>
+      <if test="gameStatus != null" >
+        game_status,
+      </if>
+      <if test="gameTime != null" >
+        game_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="gameName != null" >
+        #{gameName,jdbcType=VARCHAR},
+      </if>
+      <if test="gameCreatorId != null" >
+        #{gameCreatorId,jdbcType=BIGINT},
+      </if>
+      <if test="gameMaxEnterprise != null" >
+        #{gameMaxEnterprise,jdbcType=INTEGER},
+      </if>
+      <if test="gameEnterpriseNumber != null" >
+        #{gameEnterpriseNumber,jdbcType=INTEGER},
+      </if>
+      <if test="gameEnterpriseAliveNumber != null" >
+        #{gameEnterpriseAliveNumber,jdbcType=INTEGER},
+      </if>
+      <if test="gameYears != null" >
+        #{gameYears,jdbcType=INTEGER},
+      </if>
+      <if test="gamePeriodsOfYear != null" >
+        #{gamePeriodsOfYear,jdbcType=INTEGER},
+      </if>
+      <if test="gameCurrentPeriod != null" >
+        #{gameCurrentPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="gameStatus != null" >
+        #{gameStatus,jdbcType=INTEGER},
+      </if>
+      <if test="gameTime != null" >
+        #{gameTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.demo.demogenerator.model.GameInfo" >
+    update game_info
+    <set >
+      <if test="gameName != null" >
+        game_name = #{gameName,jdbcType=VARCHAR},
+      </if>
+      <if test="gameCreatorId != null" >
+        game_creator_id = #{gameCreatorId,jdbcType=BIGINT},
+      </if>
+      <if test="gameMaxEnterprise != null" >
+        game_max_enterprise = #{gameMaxEnterprise,jdbcType=INTEGER},
+      </if>
+      <if test="gameEnterpriseNumber != null" >
+        game_enterprise_number = #{gameEnterpriseNumber,jdbcType=INTEGER},
+      </if>
+      <if test="gameEnterpriseAliveNumber != null" >
+        game_enterprise_alive_number = #{gameEnterpriseAliveNumber,jdbcType=INTEGER},
+      </if>
+      <if test="gameYears != null" >
+        game_years = #{gameYears,jdbcType=INTEGER},
+      </if>
+      <if test="gamePeriodsOfYear != null" >
+        game_periods_of_year = #{gamePeriodsOfYear,jdbcType=INTEGER},
+      </if>
+      <if test="gameCurrentPeriod != null" >
+        game_current_period = #{gameCurrentPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="gameStatus != null" >
+        game_status = #{gameStatus,jdbcType=INTEGER},
+      </if>
+      <if test="gameTime != null" >
+        game_time = #{gameTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.demo.demogenerator.model.GameInfo" >
+    update game_info
+    set game_name = #{gameName,jdbcType=VARCHAR},
+      game_creator_id = #{gameCreatorId,jdbcType=BIGINT},
+      game_max_enterprise = #{gameMaxEnterprise,jdbcType=INTEGER},
+      game_enterprise_number = #{gameEnterpriseNumber,jdbcType=INTEGER},
+      game_enterprise_alive_number = #{gameEnterpriseAliveNumber,jdbcType=INTEGER},
+      game_years = #{gameYears,jdbcType=INTEGER},
+      game_periods_of_year = #{gamePeriodsOfYear,jdbcType=INTEGER},
+      game_current_period = #{gameCurrentPeriod,jdbcType=INTEGER},
+      game_status = #{gameStatus,jdbcType=INTEGER},
+      game_time = #{gameTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
